@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 import { Label, Text, AddButton, Thumb } from './ContactForm.styled';
 
-const Form = styled(FormikForm)`
+export const Form = styled(FormikForm)`
   display: flex;
   flex-direction: column;
 
@@ -20,7 +20,7 @@ const Form = styled(FormikForm)`
   border-radius: 10px;
 `;
 
-const Input = styled(Field)`
+export const Input = styled(Field)`
   width: 250px;
 
   font-size: 18px;
