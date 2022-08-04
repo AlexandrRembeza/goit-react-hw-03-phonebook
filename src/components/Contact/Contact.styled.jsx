@@ -10,7 +10,7 @@ export const Item = styled.li`
   margin-bottom: 20px;
 
   border-radius: 10px;
-  background-color: rgba(249, 247, 247);
+  background-color: #ffff;
 
   transition: all 150ms ease-out;
 
@@ -18,7 +18,13 @@ export const Item = styled.li`
   &:focus {
     transform: scale(1.01);
     box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
-    background-color: rgb(219, 253, 219);
+    background-image: linear-gradient(
+      to left,
+      rgb(232, 251, 233) 15%,
+      rgb(200, 253, 194) 40%,
+      rgb(168, 247, 170) 65%,
+      rgb(154, 244, 153)
+    );
 
     cursor: pointer;
   }

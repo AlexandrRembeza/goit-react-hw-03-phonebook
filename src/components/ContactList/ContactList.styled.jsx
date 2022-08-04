@@ -12,6 +12,12 @@ export const List = styled.ul`
   margin: 0;
 
   color: rgb(16, 16, 144);
-  background-color: #ffff;
+  background-image: linear-gradient(
+    to right,
+    rgb(223, 236, 253) 15%,
+    rgb(194, 223, 254) 40%,
+    rgb(176, 212, 249) 65%,
+    rgb(175, 212, 252)
+  );
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px 0px;
 `;
