@@ -1,15 +1,19 @@
-import { DeleteButton, Item } from './Contact.styled';
+import { DeleteButton } from './Contact.styled';
 import { CgClose } from 'react-icons/cg';
 import PropTypes from 'prop-types';
 
 export const Contact = ({ name, number, id, deleteContact }) => {
   return (
-    <Item>
+    <>
       {name}: {number}
-      <DeleteButton data-id={id} onClick={deleteContact}>
+      <DeleteButton
+        data-id={id}
+        onClick={deleteContact}
+        aria-label="Удалить контакт"
+      >
         <CgClose size={17} />
       </DeleteButton>
-    </Item>
+    </>
   );
 };
 
