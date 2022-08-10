@@ -2,6 +2,9 @@ import { Component } from 'react';
 import { nanoid } from 'nanoid';
 import PropTypes, { arrayOf } from 'prop-types';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import { Phonebook, Title, Subtitle, Wrapper, ErrorMessage } from 'App.styled';
 import { ContactForm } from 'components/ContactForm';
 import { Filter } from 'components/Filter';
@@ -18,19 +21,43 @@ export class App extends Component {
     filter: '',
   };
 
+  componentDidMount() {
+    const savedContacts = JSON.parse(localStorage.getItem('contacts'));
+
+    if (savedContacts) {
+      this.setState({
+        contacts: savedContacts,
+      });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.contacts !== this.state.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
+
   addContact = values => {
     const { contacts } = this.state;
 
     for (const contact of contacts) {
       if (contact.name.toLowerCase() === values.name.toLowerCase()) {
-        return alert(`${contact.name} is already in contacts`);
+        return toast.error(`${contact.name} is already in contacts`, {
+          position: 'top-left',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       }
     }
 
     this.setState(prevState => {
       return {
         contacts: [
-          { name: values.name, number: values.number, id: nanoid() },
+          { id: nanoid(), name: values.name, number: values.number },
           ...prevState.contacts,
         ],
       };
@@ -70,6 +97,7 @@ export class App extends Component {
         <Phonebook>
           <Title>Phonebook</Title>
           <ContactForm addContact={this.addContact} />
+          <ToastContainer />
 
           <Subtitle>Contacts</Subtitle>
           <Filter handleFilter={this.handleFilter} />
